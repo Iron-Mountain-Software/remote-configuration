@@ -1,0 +1,26 @@
+{
+  "name": "com.spellboundar.remote-configuration",
+  "version": "1.0.0",
+  "displayName": "Remote Configuration",
+  "description": "A library for interfacing with Unity's built in Remote Config service.",
+  "unity": "2019.1",
+  "keywords": [
+    "ui",
+    "vfx"
+  ],
+  "author": "Chris Monteferrante <chris@spellboundar.com>",
+  "type": "tool",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpellBoundAR-Packages/drawers.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SpellBoundAR-Packages/drawers/issues"
+  },
+  "homepage": "https://github.com/SpellBoundAR-Packages/drawers#readme",
+  "dependencies": {
+    "com.unity.remote-config": "3.1.3",
+    "com.spellboundar.app-identification": "1.0.3"
+  }
+}
