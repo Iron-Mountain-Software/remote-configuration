@@ -1,7 +1,13 @@
 {
     "name": "com.spellboundar.remote-configuration",
     "rootNamespace": "SpellBoundAR.RemoteConfiguration",
-    "references": [],
+    "references": [
+        "GUID:34f818b22e8004c0a83e30ac9b4e6722",
+        "GUID:f102733d58fda42a08bad5cb124568c3",
+        "GUID:5540e30183c82e84b954c033c388e06c",
+        "GUID:fe25561d224ed4743af4c60938a59d0b",
+        "GUID:9d6c7830d9ab746a7a12f144bdeeee7c"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
