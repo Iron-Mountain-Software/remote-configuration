@@ -5,6 +5,6 @@ namespace SpellBoundAR.RemoteConfiguration
 {
     public class RemoteSettingsDebugger : MonoBehaviour
     {
-        public List<RemoteSetting> remoteSettings = RemoteConfigurationManager.RemoteSettings;
+        public List<IRemoteSetting> RemoteSettings = RemoteConfigurationManager.RemoteSettings;
     }
 }

@@ -12,7 +12,7 @@ namespace SpellBoundAR.RemoteConfiguration
     {
         public static event Action<ConfigResponse> OnConfigurationReceived;
 
-        public static readonly List<RemoteSetting> RemoteSettings = new ();
+        public static readonly List<IRemoteSetting> RemoteSettings = new ();
         
         public static bool Initialized { get; private set; }
 

@@ -5,13 +5,16 @@ using UnityEngine;
 namespace SpellBoundAR.RemoteConfiguration
 {
     [Serializable]
-    public class RemoteSetting
+    public class RemoteSetting : IRemoteSetting
     {
         public event Action OnValueChanged;
     
         [SerializeField] private string key;
         [SerializeField] private string defaultValue;
         [SerializeField] private string value;
+
+        public string Key => key;
+        public string DefaultValue => defaultValue;
         
         public string Value
         {
