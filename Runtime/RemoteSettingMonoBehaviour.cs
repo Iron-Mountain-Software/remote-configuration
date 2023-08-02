@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 namespace SpellBoundAR.RemoteConfiguration
 {
+    [ExecuteAlways]
     public class RemoteSettingMonoBehaviour : MonoBehaviour, IRemoteSetting
     {
         [SerializeField] private string key;

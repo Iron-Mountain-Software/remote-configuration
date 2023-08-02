@@ -1,0 +1,18 @@
+{
+    "name": "com.spellboundar.remote-configuration.Editor",
+    "rootNamespace": "SpellBoundAR.RemoteConfiguration",
+    "references": [
+        "GUID:5936c6b2e2d714a3897b7b0c33f0e3a3"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
