@@ -45,18 +45,21 @@ namespace SpellBoundAR.RemoteConfiguration
         
         public static void SetEnvironmentID(string environmentID)
         {
+            Debug.Log("Setting Environment ID: " + environmentID);
             if (RemoteConfigService.Instance == null) return;
             RemoteConfigService.Instance.SetEnvironmentID(environmentID);
         }
 
         public static void FetchConfigs()
         {
+            Debug.Log("Fetching Configs");
             if (RemoteConfigService.Instance == null) return;
             RemoteConfigService.Instance.FetchConfigs(new UserAttributes(), new AppAttributes());
         }
 
         private static void OnFetchCompleted(ConfigResponse response)
         {
+            Debug.Log("Fetch Completed");
             OnConfigurationReceived?.Invoke(response);
         }
     }
