@@ -30,9 +30,9 @@ namespace SpellBoundAR.RemoteConfiguration
             {
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
             }
+            RemoteConfigService.Instance.FetchCompleted += OnFetchCompleted;
             SetEnvironmentID();
-            RemoteConfigService.Instance.FetchCompleted += FetchCompleted;
-            RemoteConfigService.Instance.FetchConfigs(new UserAttributes(), new AppAttributes());
+            FetchConfigs();
             Initialized = true;
         }
 
@@ -40,10 +40,22 @@ namespace SpellBoundAR.RemoteConfiguration
         {
             ScriptedAppReleaseVariant currentAppReleaseVariant = (ScriptedAppReleaseVariant) AppReleaseVariantsManager.GetCurrentAppReleaseVariant();
             if (currentAppReleaseVariant == null) return;
-            RemoteConfigService.Instance.SetEnvironmentID(currentAppReleaseVariant.RemoteConfigEnvironmentID);
+            SetEnvironmentID(currentAppReleaseVariant.RemoteConfigEnvironmentID);
         }
         
-        private static void FetchCompleted(ConfigResponse response)
+        public static void SetEnvironmentID(string environmentID)
+        {
+            if (RemoteConfigService.Instance == null) return;
+            RemoteConfigService.Instance.SetEnvironmentID(environmentID);
+        }
+
+        public static void FetchConfigs()
+        {
+            if (RemoteConfigService.Instance == null) return;
+            RemoteConfigService.Instance.FetchConfigs(new UserAttributes(), new AppAttributes());
+        }
+
+        private static void OnFetchCompleted(ConfigResponse response)
         {
             OnConfigurationReceived?.Invoke(response);
         }
