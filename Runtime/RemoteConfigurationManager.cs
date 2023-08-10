@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using SpellBoundAR.AppIdentification;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.RemoteConfig;
@@ -10,6 +9,7 @@ namespace SpellBoundAR.RemoteConfiguration
 {
     public static class RemoteConfigurationManager
     {
+        public static event Action OnInitialized;
         public static event Action<ConfigResponse> OnConfigurationReceived;
 
         public static readonly List<IRemoteSetting> RemoteSettings = new ();
@@ -31,35 +31,25 @@ namespace SpellBoundAR.RemoteConfiguration
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
             }
             RemoteConfigService.Instance.FetchCompleted += OnFetchCompleted;
-            SetEnvironmentID();
             FetchConfigs();
             Initialized = true;
+            OnInitialized?.Invoke();
         }
 
-        private static void SetEnvironmentID()
-        {
-            ScriptedAppReleaseVariant currentAppReleaseVariant = (ScriptedAppReleaseVariant) AppReleaseVariantsManager.GetCurrentAppReleaseVariant();
-            if (currentAppReleaseVariant == null) return;
-            SetEnvironmentID(currentAppReleaseVariant.RemoteConfigEnvironmentID);
-        }
-        
         public static void SetEnvironmentID(string environmentID)
         {
-            Debug.Log("Setting Environment ID: " + environmentID);
             if (RemoteConfigService.Instance == null) return;
             RemoteConfigService.Instance.SetEnvironmentID(environmentID);
         }
 
         public static void FetchConfigs()
         {
-            Debug.Log("Fetching Configs");
-            if (RemoteConfigService.Instance == null) return;
+            if (!Initialized || RemoteConfigService.Instance == null) return;
             RemoteConfigService.Instance.FetchConfigs(new UserAttributes(), new AppAttributes());
         }
 
         private static void OnFetchCompleted(ConfigResponse response)
         {
-            Debug.Log("Fetch Completed");
             OnConfigurationReceived?.Invoke(response);
         }
     }
