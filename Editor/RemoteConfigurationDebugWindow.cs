@@ -19,7 +19,6 @@ namespace SpellBoundAR.RemoteConfiguration.Editor
             {
                 RemoteConfigurationManager.FetchConfigs();
             }
-
             foreach (IRemoteSetting setting in RemoteConfigurationManager.RemoteSettings)
             {
                 if (setting == null) continue;
