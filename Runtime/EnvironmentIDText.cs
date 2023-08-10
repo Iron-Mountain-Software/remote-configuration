@@ -1,3 +1,4 @@
+using Unity.Services.RemoteConfig;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,12 +19,25 @@ namespace SpellBoundAR.RemoteConfiguration
         private void OnEnable()
         {
             RemoteConfigurationManager.OnEnvironmentChanged += Refresh;
+            if (RemoteConfigService.Instance != null)
+            {
+                RemoteConfigService.Instance.FetchCompleted += OnFetchCompleted;
+            }
             Refresh();
         }
 
         private void OnDisable()
         {
             RemoteConfigurationManager.OnEnvironmentChanged -= Refresh;
+            if (RemoteConfigService.Instance != null)
+            {
+                RemoteConfigService.Instance.FetchCompleted -= OnFetchCompleted;
+            }
+        }
+        
+        private void OnFetchCompleted(ConfigResponse response)
+        {
+            Refresh();
         }
 
         private void Refresh()
