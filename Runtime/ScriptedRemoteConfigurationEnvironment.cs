@@ -11,7 +11,7 @@ namespace SpellBoundAR.RemoteConfiguration
 
         public void ActivateEnvironment()
         {
-            RemoteConfigurationManager.SetEnvironmentID(environmentID);
+            RemoteConfigurationManager.EnvironmentID = environmentID;
             RemoteConfigurationManager.FetchConfigs();
         }
     }

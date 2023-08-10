@@ -10,10 +10,27 @@ namespace SpellBoundAR.RemoteConfiguration
     public static class RemoteConfigurationManager
     {
         public static event Action OnInitialized;
+        public static event Action OnEnvironmentChanged;
         public static event Action<ConfigResponse> OnConfigurationReceived;
 
         public static readonly List<IRemoteSetting> RemoteSettings = new ();
-        
+
+        public static string EnvironmentID
+        {
+            get
+            {
+                if (RemoteConfigService.Instance == null) return string.Empty;
+                if (RemoteConfigService.Instance.appConfig == null) return string.Empty;
+                return RemoteConfigService.Instance.appConfig.environmentId;
+            }
+            set
+            {
+                if (RemoteConfigService.Instance == null) return;
+                RemoteConfigService.Instance.SetEnvironmentID(value);
+                OnEnvironmentChanged?.Invoke();
+            }
+        }
+
         public static bool Initialized { get; private set; }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -34,12 +51,6 @@ namespace SpellBoundAR.RemoteConfiguration
             FetchConfigs();
             Initialized = true;
             OnInitialized?.Invoke();
-        }
-
-        public static void SetEnvironmentID(string environmentID)
-        {
-            if (RemoteConfigService.Instance == null) return;
-            RemoteConfigService.Instance.SetEnvironmentID(environmentID);
         }
 
         public static void FetchConfigs()
