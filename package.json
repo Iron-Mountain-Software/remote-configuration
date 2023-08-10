@@ -1,6 +1,6 @@
 {
   "name": "com.spellboundar.remote-configuration",
-  "version": "1.0.7",
+  "version": "1.1.1",
   "displayName": "Remote Configuration",
   "description": "A library for interfacing with Unity's built in Remote Config service.",
   "unity": "2019.1",

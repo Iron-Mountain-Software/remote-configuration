@@ -18,13 +18,7 @@ namespace SpellBoundAR.RemoteConfiguration
 
         public string Value
         {
-            get
-            {
-                Value = RemoteConfigurationManager.Initialized
-                    ? RemoteConfigService.Instance.appConfig.GetString(key, defaultValue)
-                    : defaultValue;
-                return value;
-            }
+            get => value;
             private set
             {
                 if (this.value == value) return;
@@ -32,24 +26,30 @@ namespace SpellBoundAR.RemoteConfiguration
                 onValueChanged?.Invoke(this.value);
             }
         }
-        
-        private void OnConfigurationReceived(ConfigResponse configResponse)
-        {
-            Value = RemoteConfigService.Instance.appConfig.GetString(key, defaultValue);
-        }
 
         private void OnEnable()
         {
-            Value = defaultValue;
             RemoteConfigurationManager.RemoteSettings.Add(this);
             RemoteConfigurationManager.OnConfigurationReceived += OnConfigurationReceived;
-            onValueChanged?.Invoke(Value);
+            RefreshValue();
         }
 
         private void OnDisable()
         {
             RemoteConfigurationManager.RemoteSettings.Remove(this);
             RemoteConfigurationManager.OnConfigurationReceived -= OnConfigurationReceived;
+        }
+        
+        private void OnConfigurationReceived(ConfigResponse configResponse)
+        {
+            RefreshValue();
+        }
+
+        private void RefreshValue()
+        {
+            Value = RemoteConfigService.Instance is {appConfig: { }} 
+                ? RemoteConfigService.Instance.appConfig.GetString(key, defaultValue)
+                : defaultValue;
         }
     }
 }

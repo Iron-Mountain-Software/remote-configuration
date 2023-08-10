@@ -13,7 +13,7 @@ namespace SpellBoundAR.RemoteConfiguration.Editor
             _environmentID = GUILayout.TextField(_environmentID);
             if (GUILayout.Button("Set Environment ID"))
             {
-                RemoteConfigurationManager.SetEnvironmentID(_environmentID);
+                RemoteConfigurationManager.EnvironmentID = _environmentID;
             }
             if (GUILayout.Button("Fetch Configs"))
             {
