@@ -1,6 +1,6 @@
 {
-    "name": "com.spellboundar.remote-configuration.Editor",
-    "rootNamespace": "SpellBoundAR.RemoteConfiguration",
+    "name": "com.iron-mountain.remote-configuration.Editor",
+    "rootNamespace": "IronMountain.RemoteConfiguration",
     "references": [
         "GUID:5936c6b2e2d714a3897b7b0c33f0e3a3",
         "GUID:dfedbea4dc7154f92b6f47c1877bce29"

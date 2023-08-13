@@ -5,16 +5,16 @@ using Unity.Services.Core;
 using Unity.Services.RemoteConfig;
 using UnityEngine;
 
-namespace SpellBoundAR.RemoteConfiguration
+namespace IronMountain.RemoteConfiguration
 {
-    public static class RemoteConfigurationManager
+    public class RemoteConfigurationManager : MonoBehaviour
     {
         public static event Action OnInitialized;
         public static event Action OnEnvironmentChanged;
         public static event Action<ConfigResponse> OnConfigurationReceived;
 
         public static readonly List<IRemoteSetting> RemoteSettings = new ();
-
+        
         public static string EnvironmentID
         {
             get
@@ -32,6 +32,15 @@ namespace SpellBoundAR.RemoteConfiguration
         }
 
         public static bool Initialized { get; private set; }
+
+        [SerializeField] private bool initializeEnvironmentOnAwake;
+        [SerializeField] private ScriptedRemoteConfigurationEnvironment initializationEnvironment;
+
+        private void Awake()
+        {
+            if (initializeEnvironmentOnAwake && initializationEnvironment) 
+                initializationEnvironment.ActivateEnvironment();
+        }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void StartInitialization()
@@ -62,6 +71,11 @@ namespace SpellBoundAR.RemoteConfiguration
         private static void OnFetchCompleted(ConfigResponse response)
         {
             OnConfigurationReceived?.Invoke(response);
+        }
+
+        private void OnValidate()
+        {
+            if (!initializeEnvironmentOnAwake) initializationEnvironment = null;
         }
     }
 }

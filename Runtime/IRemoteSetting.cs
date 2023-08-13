@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace SpellBoundAR.RemoteConfiguration
+namespace IronMountain.RemoteConfiguration
 {
     public interface IRemoteSetting
     {

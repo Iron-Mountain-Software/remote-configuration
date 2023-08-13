@@ -2,7 +2,7 @@ using System;
 using Unity.Services.RemoteConfig;
 using UnityEngine;
 
-namespace SpellBoundAR.RemoteConfiguration
+namespace IronMountain.RemoteConfiguration
 {
     [Serializable]
     public class RemoteSetting : IRemoteSetting

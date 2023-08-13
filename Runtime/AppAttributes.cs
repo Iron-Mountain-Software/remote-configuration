@@ -1,4 +1,4 @@
-namespace SpellBoundAR.RemoteConfiguration
+namespace IronMountain.RemoteConfiguration
 {
     public struct AppAttributes { }
 }

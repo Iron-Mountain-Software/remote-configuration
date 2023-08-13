@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace SpellBoundAR.RemoteConfiguration.Editor
+namespace IronMountain.RemoteConfiguration.Editor
 {
     [CustomEditor(typeof(ScriptedRemoteConfigurationEnvironment), true)]
     public class ScriptedRemoteConfigurationEnvironmentInspector : UnityEditor.Editor

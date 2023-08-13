@@ -2,7 +2,7 @@ using Unity.Services.RemoteConfig;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace SpellBoundAR.RemoteConfiguration
+namespace IronMountain.RemoteConfiguration
 {
     [ExecuteAlways]
     public class RemoteSettingMonoBehaviour : MonoBehaviour, IRemoteSetting

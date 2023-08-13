@@ -2,7 +2,7 @@ using Unity.Services.RemoteConfig;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpellBoundAR.RemoteConfiguration
+namespace IronMountain.RemoteConfiguration
 {
     [ExecuteAlways]
     [RequireComponent(typeof(Text))]

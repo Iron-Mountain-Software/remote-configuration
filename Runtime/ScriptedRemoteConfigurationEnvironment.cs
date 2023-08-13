@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpellBoundAR.RemoteConfiguration
+namespace IronMountain.RemoteConfiguration
 {
     [CreateAssetMenu(menuName = "Scriptable Objects/Remote Config Environment")]
     public class ScriptedRemoteConfigurationEnvironment : ScriptableObject
